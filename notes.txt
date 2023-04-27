@@ -63,5 +63,15 @@ Server: Docker Engine - Community
 verification isn't a concern, install Rancher using the self-signed certificate that 
 it generates. This installation option omits the hassle of generating a certificate yourself.
 
+- will config Rancher to uses etcd as datastore. to preserve data.
 
+$> docker run -d --restart=unless-stopped \
+  -p 80:80 -p 443:443 \
+  -v /opt/rancher:/var/lib/rancher \
+  --privileged \
+  rancher/rancher:latest
+  
+  $> docker ps # to confirm rancher was deployed.
+  
+  
 
