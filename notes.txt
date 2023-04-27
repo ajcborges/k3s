@@ -4,6 +4,7 @@ Good References:
 - https://youtu.be/E3WP2SWSV4Q
 - https://youtu.be/TozYkYg34Ck
 - https://youtu.be/2KSZlE4JTuM
+- https://youtu.be/9sLHoEyRq8w # NGINX Ingress Controller for Kubernetes Tutorial:
 
 
 
