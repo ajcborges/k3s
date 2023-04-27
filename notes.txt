@@ -13,6 +13,8 @@ $> ssh user@192.168.1.117
 - We are going to use Rancher and it currently support docker v20.10
 
 $> curl https://releases.rancher.com/install-docker/20.10.sh | sh
+#installing docker compose
+$> sudo curl -L "https://github.com/docker/compose/releases/dowload/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 $> sudo usermod -aG docker ajcborges-admin
 
 - WARNING: Access to the remote API on a privileged Docker daemon is equivalent
@@ -72,6 +74,8 @@ $> docker run -d --restart=unless-stopped \
   rancher/rancher:latest
   
   $> docker ps # to confirm rancher was deployed.
-  
+---------------------------------------------
+
+  - web browse to: https://192.168.1.117
   
 
