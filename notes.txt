@@ -13,8 +13,14 @@ $> ssh user@192.168.1.117
 - We are going to use Rancher and it currently support docker v20.10
 
 $> curl https://releases.rancher.com/install-docker/20.10.sh | sh
+---------------------------------------------
 #installing docker compose
-$> sudo curl -L "https://github.com/docker/compose/releases/dowload/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+#####$> sudo curl -L "https://github.com/docker/compose/releases/dowload/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64 -o /usr/local/bin/docker-compose
+$> sudo chmod +x /usr/local/bin/docker-compose
+$> docker-compose --version # verify that docker compose was installed correctly.
+---------------------------------------------
+
 $> sudo usermod -aG docker ajcborges-admin
 
 - WARNING: Access to the remote API on a privileged Docker daemon is equivalent
@@ -66,12 +72,23 @@ verification isn't a concern, install Rancher using the self-signed certificate 
 it generates. This installation option omits the hassle of generating a certificate yourself.
 
 - will config Rancher to uses etcd as datastore. to preserve data.
+- create a file called rancher-compose.yml and add the below config.
 
-$> docker run -d --restart=unless-stopped \
-  -p 80:80 -p 443:443 \
-  -v /opt/rancher:/var/lib/rancher \
-  --privileged \
-  rancher/rancher:latest
+ajcborges-admin@k3s-srv:~/developments$ vi rancher-compose.yml
+version: '3'
+services:
+  rancher:
+    image: rancher/rancher:latest
+    container_name: rancher
+    restart: unless-stopped
+    privileged: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /opt/rancher:/var/lib/rancher
+    environment:
+      - CATTLE_BOOTSTRAP_PASSWORD='S0so3el5c'
   
   $> docker ps # to confirm rancher was deployed.
 ---------------------------------------------
