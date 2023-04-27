@@ -106,4 +106,10 @@ services:
 
   - web browse to: https://192.168.1.117
   
+---------------------------------------------    
+- to reset password, execute the below commands:
+$> docker ps # grab rancher container-id
+$> docker exec CONTAINER-ID reset-password # replace container-id info.
+
+
 
