@@ -78,7 +78,7 @@ ajcborges-admin@k3s-srv:~/developments$ vi rancher-compose.yml
 version: '3'
 services:
   rancher:
-    image: rancher/rancher:latest
+    image: rancher/rancher:2.6
     container_name: rancher
     restart: unless-stopped
     privileged: true
