@@ -1,3 +1,13 @@
+Good References:
+- https://youtu.be/uBgMbO0c9a4
+- https://youtu.be/oILc0ywDVTk
+- https://youtu.be/E3WP2SWSV4Q
+- https://youtu.be/TozYkYg34Ck
+- https://youtu.be/2KSZlE4JTuM
+
+
+
+
 OS: ubuntu-22.04.2-live-server-amd64
 MEMORY: 4GB 
 DISK: 80GB
