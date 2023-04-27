@@ -88,7 +88,7 @@ services:
     volumes:
       - /opt/rancher:/var/lib/rancher
     environment:
-      - CATTLE_BOOTSTRAP_PASSWORD='S0so3el5c'
+      - CATTLE_BOOTSTRAP_PASSWORD=password
   
   $> docker ps # to confirm rancher was deployed.
 ---------------------------------------------
