@@ -1,0 +1,67 @@
+OS: ubuntu-22.04.2-live-server-amd64
+MEMORY: 4GB 
+DISK: 80GB
+NETWORK: LAN - 192.168.1.117 255.255.255.0
+---------------------------------------------
+$> sudo apt update -y
+$> sudo apt upgrade -y
+---------------------------------------------
+- from remote host ssh into k3s-srv
+$> ssh user@192.168.1.117
+---------------------------------------------
+- Before we intall docker we want to make sure we are installi a supported version.
+- We are going to use Rancher and it currently support docker v20.10
+
+$> curl https://releases.rancher.com/install-docker/20.10.sh | sh
+$> sudo usermod -aG docker ajcborges-admin
+
+- WARNING: Access to the remote API on a privileged Docker daemon is equivalent
+         to root access on the host. Refer to the 'Docker daemon attack surface'
+         documentation for details: https://docs.docker.com/go/attack-surface/
+         
+- log out and log in back
+$> logout
+$> ssh user@192.168.1.117
+
+- let run a docker command to verify that docer is running:
+$> docker version
+
+- if you see the command output similar to the text below we are good to continue.
+---------------------------------------------
+ajcborges-admin@k3s-srv:~$ docker version
+Client: Docker Engine - Community
+ Version:           20.10.23
+ API version:       1.41
+ Go version:        go1.18.10
+ Git commit:        7155243
+ Built:             Thu Jan 19 17:45:08 2023
+ OS/Arch:           linux/amd64
+ Context:           default
+ Experimental:      true
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          20.10.23
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.18.10
+  Git commit:       6051f14
+  Built:            Thu Jan 19 17:42:57 2023
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          1.6.20
+  GitCommit:        2806fc1057397dbaeefbea0e4e17bddfbd388f38
+ runc:
+  Version:          1.1.5
+  GitCommit:        v1.1.5-0-gf19387a
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+---------------------------------------------
+
+- if you are installing Rancher in a development or testing environment where identity 
+verification isn't a concern, install Rancher using the self-signed certificate that 
+it generates. This installation option omits the hassle of generating a certificate yourself.
+
+
+
